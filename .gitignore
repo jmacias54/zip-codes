@@ -23,3 +23,5 @@
 hs_err_pid*
 zip-code-service/.classpath
 zip-code-service/.settings/org.eclipse.jdt.apt.core.prefs
+*.prefs
+zip-code-service/.project
