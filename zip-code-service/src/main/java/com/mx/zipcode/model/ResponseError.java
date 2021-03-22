@@ -1,15 +1,14 @@
 package com.mx.zipcode.model;
 
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-
 import java.util.List;
-
-import lombok.Builder;
-import lombok.Data;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
+import lombok.Data;
 
 /**
  * @author Mauricio Chavez
@@ -21,11 +20,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @ApiModel(value = "ResponseError", description = "Respuesta de error a un fallo en el sistema")
 public class ResponseError {
     
-	@JsonProperty("codigo")
+	@JsonProperty("code")
     @ApiModelProperty(value = "errorCode - codigo asignado a un error", required = true)
     private int errorCode;
     
-	@JsonProperty("clave")
+	@JsonProperty("httpStatus")
     @ApiModelProperty(value = "httpStatus", required = true)
     private String httpStatus;
     
@@ -35,11 +34,11 @@ public class ResponseError {
     private String errorMessage;
     
     
-	@JsonProperty("descripcion")
+	@JsonProperty("description")
     @ApiModelProperty(value = "rootErrorMessage error general", required = true)
     private String rootErrorMessage;
     
-	@JsonProperty("mensajes")
+	@JsonProperty("messages")
     @ApiModelProperty(value = "errorList lista de errores", required = true)
     private List<String> errorList;
 }

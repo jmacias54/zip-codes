@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.mx.zipcode.dao.ZipCodeDAO;
 import com.mx.zipcode.exception.BadRequestException;
+import com.mx.zipcode.exception.UnknownResourceException;
 import com.mx.zipcode.model.Settlement;
 import com.mx.zipcode.model.ZipCode;
 import com.mx.zipcode.service.ZipCodeService;
@@ -22,7 +23,7 @@ public class ZipCodeServiceImpl implements ZipCodeService {
 	private ZipCodeDAO zipCodeDAO;
 
 	@Override
-	public ZipCode findZipCode(String code) {
+	public ZipCode findZipCode(String code)  {
 		log.info(" --- findZipCode --- ");
 		log.info(" code : " + code);
 
@@ -30,6 +31,9 @@ public class ZipCodeServiceImpl implements ZipCodeService {
 			throw new BadRequestException(Constants.MSG_BAD_REQUEST);
 		
 		ZipCode out = zipCodeDAO.findZipCode(code);
+		
+		if(out == null )
+			throw new UnknownResourceException(Constants.EXCEPTION_EMPTY_RESULT);
 
 		List<Settlement> settlements = zipCodeDAO.findSettlements(code);
 
