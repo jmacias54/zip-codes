@@ -12,6 +12,7 @@
 	<groupId>com.mx.zipcode</groupId>
 	<artifactId>zip-code-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
 	<name>zip-code-service</name>
 	<description>Demo project for Spring Boot</description>
 
@@ -20,7 +21,11 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
-	
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-gcp-starter-sql-mysql</artifactId>
+			<version>1.2.6.RELEASE</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-jdbc</artifactId>
@@ -82,15 +87,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-		<resources>
-			<resource>
-				<directory>src/main/appengine</directory>
-				<filtering>true</filtering>
-				<includes>
-					<include>app.yml</include>
-				</includes>
-			</resource>
-		</resources>
+
 	</build>
 
 </project>
