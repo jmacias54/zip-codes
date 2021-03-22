@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mx.zipcode.dao.ZipCodeDAO;
+import com.mx.zipcode.exception.BadRequestException;
 import com.mx.zipcode.model.Settlement;
 import com.mx.zipcode.model.ZipCode;
 import com.mx.zipcode.service.ZipCodeService;
+import com.mx.zipcode.util.Constants;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -24,6 +26,9 @@ public class ZipCodeServiceImpl implements ZipCodeService {
 		log.info(" --- findZipCode --- ");
 		log.info(" code : " + code);
 
+		if(code == null || code.equals(""))
+			throw new BadRequestException(Constants.MSG_BAD_REQUEST);
+		
 		ZipCode out = zipCodeDAO.findZipCode(code);
 
 		List<Settlement> settlements = zipCodeDAO.findSettlements(code);
